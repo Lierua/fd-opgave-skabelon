@@ -1,5 +1,7 @@
 ---
 import "@styles/main.css";
+import Nav from "@components/Nav.astro";
+import Footer from "@components/Footer.astro";
 ---
 
 <html lang="en">
@@ -14,7 +16,13 @@ import "@styles/main.css";
     </style>
   </head>
   <body>
+    <header class="full-bleed">
+      <Nav></Nav>
+    </header>
     <slot />
+    <footer  class="full-bleed">
+      <Footer></Footer>
+    </footer>
   </body>
 </html>
 

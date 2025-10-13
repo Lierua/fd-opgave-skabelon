@@ -8,7 +8,7 @@ console.log(servicesData);
   {
     servicesData.services.map((service) => (
       <li>
-        <h2>{service.title}</h2>
+        <h3>{service.title}</h2>
         <p>{service.description}</p>
         <a href="#0">{service.buttonText}</a>
       </li>
@@ -18,7 +18,45 @@ console.log(servicesData);
 
 <style>
   @layer components {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      padding: 0;
+    }
     li {
+      border-radius: var(--border-radius);
+      background-color: var(--dark-gray);
+      border: 1px solid rgba(255, 255, 255, 0.151);
+      padding: 45px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+      p {
+        color: var(--white);
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+        a {
+          width: fit-content;
+          height: fit-content;
+          text-decoration: none;
+          padding: 16px 31px;
+          border-radius: 100px;
+          color: var(--white);
+          background-color: var(--black);
+          transition: background-color 0.3s ease-in, color 0.3s ease-in;
+          margin-top: auto;
+        }
+        a:hover {
+          background-color: var(--white);
+          color: var(--black);
+        }
     }
   }
 </style>

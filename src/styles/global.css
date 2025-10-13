@@ -1,1 +1,97 @@
 /* Globale styles her */
+
+:root {
+  --content-width: 1200px;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #595566;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --step--2: clamp(0.7813rem, 0.7457rem + 0.1578vw, 0.8681rem);
+  --step--1: clamp(0.9375rem, 0.8949rem + 0.1894vw, 1.0417rem);
+  --step-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+  --step-1: clamp(1.35rem, 1.2886rem + 0.2727vw, 1.5rem);
+  --step-2: clamp(1.62rem, 1.5464rem + 0.3273vw, 1.8rem);
+  --step-3: clamp(1.944rem, 1.8556rem + 0.3927vw, 2.16rem);
+  --step-4: clamp(2.3328rem, 2.2268rem + 0.4713vw, 2.592rem);
+  --step-5: clamp(2.7994rem, 2.6721rem + 0.5655vw, 3.1104rem);
+
+  --black: #181818;
+  --white: white;
+  --dark-gray: #262626e7;
+  --gray: rgba(27, 27, 27, 0.9);
+  --light-gray: #f5f5f5;
+  --yellow: #fbc336;
+  --hover-yellow: #f7d274;
+  --green: #4eaf4e;
+
+  --border-radius: 20px;
+  --margin-space: 6rem;
+}
+
+body {
+  display: grid;
+  grid-template-columns:
+    [full-bleed-start] minmax(1rem, 1fr) [content] minmax(
+      0,
+      var(--content-width)
+    )
+    minmax(1rem, 1fr) [full-bleed-end];
+  > * {
+    grid-column: content;
+  }
+}
+
+.full-bleed {
+  grid-column: full-bleed;
+}
+.content-padding {
+  padding-inline: max(1rem, 50% - var(--content-width) / 2);
+}
+
+body {
+  > * + * {
+    margin-block-start: var(--flow-space, 0);
+  }
+  h1 {
+    --flow-space: 2rlh;
+    font-size: var(--step-4);
+    & + p {
+      --flow-space: 1rlh;
+    }
+  }
+  h2 {
+    --flow-space: 2rlh;
+    font-size: var(--step-3);
+    color: var(--gray-900);
+    & + * {
+      --flow-space: 0.5rlh;
+    }
+    & + h3 {
+      --flow-space: 0.15rlh;
+    }
+  }
+  h3 {
+    --flow-space: 1rlh;
+    font-size: var(--step-2);
+    color: var(--gray-700);
+    & + * {
+      --flow-space: 0.15rlh;
+    }
+  }
+  p {
+    color: var(--gray-600);
+  }
+  figcaption {
+    color: var(--gray-400);
+  }
+  a {
+    font-size: var(--step--1);
+  }
+}

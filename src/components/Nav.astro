@@ -1,0 +1,86 @@
+---
+
+---
+
+<div class="nav content-padding">
+    <h3>
+        AskExperts
+    </h3>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/case">Case Study</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+    <button popovertarget="info-pop">Login</button>
+
+    <div id="info-pop" popover>
+    <h3>Popover Title</h3>
+    <p>This is a simple popover example.</p>
+    </div>
+</div>
+
+<style>
+.nav {
+    height: 110px;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    > * {
+        height: fit-content;
+        margin: auto 0;
+        color: var(--white);
+    }
+    ul {
+        display: flex;
+        gap: 2rem;
+        width: fit-content;
+        justify-content: space-between;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;
+        color: var(--white);
+        transition: color 0.3s ease-in;
+        padding: 15px 25px;
+        
+    }
+    a:hover {
+        color: rgba(255, 255, 255, 0.6);
+    }
+    button{
+        color: var(--gray);
+        transition: background-color 0.3s ease-in;
+        padding: 15px 25px;
+        border-radius: 100px;
+        background-color: var(--yellow);
+    }
+    button:hover {
+        background-color: var(--hover-yellow);
+    }
+}
+
+[popover] {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 250px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
