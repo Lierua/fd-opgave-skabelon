@@ -1,0 +1,99 @@
+---
+import PlusIcon from "@assets/images/plus.svg";
+const { exclusive, question, answer, linkBlock } = Astro.props;
+---
+
+<details {...(exclusive ? { name: "faq" } : {})}>
+  <summary>
+    <span>
+      {question}
+      <PlusIcon />
+    </span>
+  </summary>
+  <div class="answer">
+    {
+      // Since answer is a string, just render it directly
+      // but if you want to allow newlines, split them
+      answer.split("\n\n").map((paragraph) => <p>{paragraph}</p>)
+    }
+
+    {
+      linkBlock && (
+        <a class="link-block" href={linkBlock.url} target="_blank">
+          {linkBlock.label}
+        </a>
+      )
+    }
+  </div>
+</details>
+
+
+<style>
+
+  details {
+    interpolate-size: allow-keywords;
+    color: hsl(190 30% 12%);
+    border-bottom: 1px solid #dadada;
+    overflow: hidden;
+
+    &::details-content {
+      display: block;
+      block-size: 0;
+      transition-property: block-size content-visibility;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+    }
+    &[open]::details-content {
+      block-size: auto;
+    }
+    summary {
+      font-weight: 700;
+      color: #181818;
+      text-wrap: revert;
+      user-select: none;
+      cursor: pointer;
+
+      &::marker,
+      &::-webkit-details-marker {
+        content: "";
+        display: none;
+      }
+
+      span {
+        border: none;
+        text-align: start;
+        padding: 0;
+        inline-size: 100%;
+        padding-block: 1rlh;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+
+        svg {
+          inline-size: auto;
+          height: 1lh;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .answer {
+      color: #595566;
+
+      > * + * {
+        margin-top: 1em;
+      }
+
+      :last-child {
+        padding-block-end: 1rlh;
+      }
+
+      .link-block {
+        display: block;
+      }
+    }
+  }
+
+
+
+</style>

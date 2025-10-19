@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+import phone from "@assets/images/Icon.svg";
+import clock from "@assets/images/Icon(1).svg";
+import pin from "@assets/images/Icon(2).svg";
+import laptop from "@assets/images/imgGrid/photo.jpg";
+import hands from "@assets/images/imgGrid/photo-1.jpg";
+import girl from "@assets/images/imgGrid/photo-2.jpg";
+import pattern from "@assets/images/Pattern2.png";
+---
+
+<div>
+    <div class="content">
+        <div class="info">
+            <h3>PROCESS</h3>
+            <h2>Contact Us. It’s Easy.</h2>
+            <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative.</p>
+            <ul class="icon-list">
+                <li>
+                    <Image class="icon" src={phone} alt="phone icon" />
+                    <div>
+                        <p>Call Today</p>
+                        <h3>+1 800 100 900</h3>
+                    </div>
+                </li>
+                <li>
+                    <Image class="icon" src={clock} alt="clock icon" />
+                    <div>
+                        <p>Monday To Friday</p>
+                        <h3>9AM - 5PM</h3>
+                    </div>
+                </li>
+                <li>
+                    <Image class="icon" src={pin} alt="pin icon" />
+                    <div>
+                        <p>USA Officey</p>
+                        <h3>195 Devonshire St Boston, MA </br> 02110</h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="imgGrid">
+            <Image class="pattern" src={pattern} alt="pattern" />
+            <div class="girl"><Image src={girl} alt="girl" /></div>
+            <div class="laptop"><Image src={laptop} alt="laptop" /></div>
+            <div class="hands"><Image src={hands} alt="hands" /></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content {
+        display: grid;
+        grid-template-columns: 3fr 4fr;
+        gap: 3rem;
+        margin-bottom: calc(var(--margin-space) + var(--margin-space));
+                li {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 2.5rem;
+                text-wrap: balance;
+                h3 {
+                    margin-top: 0.5rem;
+                    font-weight: bold;
+                }
+                    .icon {
+                    width: auto;
+                    height: auto;
+                    flex-shrink: 0;
+                    }
+            }
+    .imgGrid {
+        position: relative;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "girl laptop"
+            "girl hands";
+            &::after {
+                bottom: -30px;
+                left: -60px;
+                content: "";
+                position: absolute;
+                height: 183px;
+                width: 304px;
+                border-radius: var(--border-radius);
+                background-color: var(--green);
+                z-index: -1;
+            }
+            .pattern {
+                position: absolute;
+                border-radius: 0;
+                top: -40px;
+                right: -70px;
+                scale: 1;
+                z-index: -1;
+            }
+        > * {
+            display: grid;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            img {
+                align-self: stretch;
+                object-fit: cover;
+            }
+        }
+        .girl {
+            grid-area: girl;
+            img {
+                scale: 1.6;
+                translate: 0px 90px;
+            }
+        }
+        .laptop {
+            grid-area: laptop;
+            img {
+                scale: 1.2;
+                translate: -30px 0px;
+            }
+        }
+        .hands {
+            grid-area: hands;
+        }
+    }
+    }
+</style>

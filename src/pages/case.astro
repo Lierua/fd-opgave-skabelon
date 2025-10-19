@@ -5,7 +5,7 @@ import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
 ---
 
 <Layout>
-  <HeroBgWrapper imagePath="test.png">
+  <HeroBgWrapper class="full-bleed reuseHero" imagePath="caseHero.png">
     <header>
       <p>Case Studies</p>
       <h1>Taxes & Efficiency</h1>
@@ -14,3 +14,9 @@ import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
 
   <CaseStudyArticle />
 </Layout>
+
+<style>
+    .reuseHero {
+        max-width: 788px;
+    }
+</style>

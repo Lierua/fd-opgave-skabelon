@@ -1,0 +1,136 @@
+---
+const {number, overTitle, title, subtitle, present} = Astro.props
+import Employees from "@data/employees.json"
+import SectionTitle from "./sectionTitle.astro"
+import LinkButton from "./LinkButton.astro";
+
+import { Image } from "astro:assets";
+
+import instagram from "@icons/instagram.svg";
+import facebook from "@icons/facebook.svg";
+import twitter from "@icons/twitter.svg";
+
+
+// create a mapping object
+const icons = {
+  instagram,
+  facebook,
+  twitter,
+};
+---
+<div class="content">
+  <div>
+    <div class="info">
+    <SectionTitle data="Light" overTitle={overTitle} title={title} subtitle={subtitle}/>
+    <div class="link" data-present={present}>
+      <LinkButton data="black" url="#" text="Join our team" />
+    </div>
+    </div>
+  <ul>
+    {
+      Employees.slice(0, number).map((employee) => (
+        <li>
+            <a href={`employees/${employee.slug}`}>
+            <div class="img">
+              <img src={employee.img} alt={`Employee ${employee.name}`}>
+              <p>{employee.title}</p>
+            </div>
+            </a> 
+              <h3>{employee.name}</h2>
+              <p>{employee.description}</p>
+              <div class="links">
+                {
+                  employee.social_links.map((link) => (
+                    <a href={link.url} aria-label={link.platform}>
+                      <Image src={icons[link.icon]} alt={link.icon} />
+                    </a>
+                  ))
+                }
+              </div>
+          </li>
+      ))
+    }
+  </ul>
+</div>
+
+
+<style>
+.content {
+  margin-bottom: var(--margin-space);
+}
+.info {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-bottom: 3rem;
+  .link {
+    align-self: end;
+    margin-left: auto;  
+  }
+}
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 0;
+  text-align: center;
+  > :nth-child(1) {
+    .img {
+      p {
+        background-color: var(--yellow);
+        color: var(--black);
+      }
+    }
+  }
+  .img {
+    img {
+      transition: scale 0.2s ease;
+    }
+
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    position: relative;
+    margin-bottom: 1.5rem;
+    p {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 25px;
+      background-color: var(--black);
+      color: var(--white);
+      border-radius: 100px;
+      font-weight: 600;
+      transition: color 0.5s ease, background-color 0.5s ease;
+    }
+    &:hover {
+      img {
+        scale: 1.1;
+      }
+      p {
+        background-color: var(--white);
+        color: var(--black);
+      }
+    }
+  }
+  h3 {
+    font-weight: 600;
+  }
+  p {
+    margin-top: 0.65rem;
+    padding-inline: 5%;
+  }
+  .links {
+    width: fit-content;
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem auto 0 auto;
+  }
+}
+
+        [data-present="yes"] {
+        display: block;
+        }
+        [data-present="no"] {
+        display: none;
+        }
+</style>

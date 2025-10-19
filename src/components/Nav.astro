@@ -10,15 +10,23 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/case">Case Study</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="/about">About</a></li>
         </ul>
     </nav>
     <button popovertarget="info-pop">Login</button>
 
     <div id="info-pop" popover>
-    <h3>Popover Title</h3>
-    <p>This is a simple popover example.</p>
+    <h1>Dashboard Login</h1>
+        <div>
+        <p>Email address</p>
+        <input type="email" placeholder="Your mail address" class="mail-input">
+        </div>
+        <div>
+        <p>Password</p>
+        <input type="Password" placeholder="************" class="mail-input">
+        </div>
+        <button>Go to dashboard</button>
     </div>
 </div>
 
@@ -29,6 +37,7 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
+
     > * {
         height: fit-content;
         margin: auto 0;
@@ -56,31 +65,105 @@
     }
     button{
         color: var(--gray);
-        transition: background-color 0.3s ease-in;
+        transition: background-color 0.2s ease-in;
         padding: 15px 25px;
         border-radius: 100px;
         background-color: var(--yellow);
     }
     button:hover {
-        background-color: var(--hover-yellow);
+        background-color: var(--white);
     }
 }
 
-[popover] {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 250px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+/* Backdrop styling (when popover is open) */
 
+#info-pop {
+    padding: 65px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    h1 {
+        color: var(--white);
+    }
+    p {
+        color: var(--white);
+        margin-bottom: 0.3rem;
+        margin-right: auto;
+        width: fit-content;
+    }
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+    }
+     button{
+        width: fit-content;
+        margin: auto auto;
+        font-weight: 600;
+        color: var(--gray);
+        transition: background-color 0.2s ease-in;
+        padding: 15px 45px;
+        border-radius: 100px;
+        background-color: var(--yellow);
+        z-index: 1;
+    }
+    button:hover {
+        background-color: var(--white);
+    }
+    .mail-input {
+        width: 100%;
+        height: 68px;
+        max-width: 320px;
+        padding: 0 25px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: white;
+        font-size: 16px;
+        color: #333;
+
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mail-input::placeholder {
+        color: rgb(178, 178, 178);
+        }
+
+        .mail-input:focus {
+        outline: none;
+        border-color: #bbb;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+}
+[popover] {
+  margin: auto;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  background: var(--black);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  width: fit-content;
+  text-align: center;
+  z-index: 11;
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(0);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    display 0.4s allow-discrete;
 }
 
+/* When it becomes visible */
 [popover]:popover-open {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-100px);
+  
 }
+
+/* Optional: When hiding, move it a bit further up */
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
+
+
 </style>

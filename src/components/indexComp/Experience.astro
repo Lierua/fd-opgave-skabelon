@@ -1,0 +1,123 @@
+---
+import SectionTitle from "@components/utilityComp/sectionTitle.astro"
+import experience from "@data/experience.json";
+---
+
+<div class="full-bleed">
+    <div class="content-padding content">
+      <SectionTitle data="Light" overTitle="experience" title={experience.heading} subtitle={experience.subheading}/>
+        <div class="stats">
+            <div>
+            <div class="stat" style="--percent: 85"></div>
+            <h3>Consistency</h3>
+            </div>
+            <div>
+            <div class="stat" style="--percent: 95"></div>
+            <h3>Improvement</h3>
+            </div>
+            <div>
+            <div class="stat" style="--percent: 90"></div>
+            <h3>Branching</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .full-bleed {
+        background-color: var(--yellow);
+        padding-block: var(--margin-space);
+        container-type: inline-size;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        @container (width < 1100px) {
+            grid-template-columns: minmax(0,1100px);
+            align-self: center;
+            .stats {
+                margin: 0 auto;
+            }
+            > :nth-child(1) {
+                width: fit-content;
+                margin: 0 auto;
+            }
+        }
+    }
+    .stats {
+    padding-block: 2rem;
+    display: flex;
+    gap: 3rem;
+    margin-left: auto;
+        @container (width < 700px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            > :nth-child(3) {
+                grid-column: span 2;
+            }
+        }
+     > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+            color: var(--black);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+     }
+    }
+    
+    :root{
+    --lineColor: var(--white);
+    }
+
+    .stat {
+    container-type:stat / inline-size;
+    --act-percent: calc(var(--percent)*1%);
+    --border-width: 7px;
+    aspect-ratio: 1;
+    width: 185px;
+    border-radius: calc(Infinity * 1px);
+    border: var(--border-width) solid transparent;
+    background:
+        conic-gradient(var(--yellow) 0 0) padding-box,
+        conic-gradient(var(--lineColor) var(--act-percent), #DAAE3C 0) border-box;
+    display: grid;
+        @container (width < 450px) {
+            width: 160px;
+        }
+
+
+    counter-reset:c var(--percent);
+    
+    &::before,
+    &::after {
+        grid-area: 1 / 1;
+    }
+    
+    &::after {
+        content:counter(c)"%";
+        place-self: center;
+        font-size: var(--step-3);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        margin-top: -10px;
+    }
+    
+    &::before {
+        content: '';
+        aspect-ratio: 1;
+        border-radius: 99px;
+        width: 34px;
+        background: var(--black);
+        border: 7px solid var(--white);
+        offset-path:border-box;
+        offset-anchor: 50% calc(50% - var(--border-width)/2);
+        offset-distance: var(--act-percent);
+    }
+    }
+</style>

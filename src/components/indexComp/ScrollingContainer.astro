@@ -1,0 +1,55 @@
+---
+import cardContent from "@data/financialProjections.json";
+import { Image } from "astro:assets";
+
+// import your icons
+import cal from "@icons/cal.svg";
+import card from "@icons/card.svg";
+import law from "@icons/law.svg";
+import money from "@icons/money.svg";
+
+// create a mapping object
+const icons = {
+  cal,
+  card,
+  law,
+  money,
+};
+---
+
+<ul class="full-width scroll-container" id="scrollBox">
+  {
+    cardContent.values.map((card) => (
+      <li>
+        <Image class="img" src={icons[card.icon]} alt={card.icon} />
+        <h3>{card.title}</h3>
+        <p>{card.description}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  li {
+    width: 377px;
+    height: fit-content;
+    background-color: #EBEBEB;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    p {
+        margin-bottom: 1rem;
+    }
+  }
+
+  .img {
+    margin-bottom: 1rem;
+    width: auto;
+    height: auto;
+  }
+</style>

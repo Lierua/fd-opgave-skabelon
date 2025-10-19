@@ -1,10 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Hero from "@components/Hero.astro";
-import Experts from "@components/Experts.astro";
+import Hero from "@components/indexComp/Hero.astro";
+import Experts from "@components/indexComp/Experts.astro";
+import Projections from "@components/indexComp/Projections.astro";
+import Experience from "@components/indexComp/Experience.astro";
+import ValuesPrinciples from "@components/ValuesPrinciples.astro";
+import Contact from "@components/indexComp/Contact.astro";
+import SectionTitle from "@components/utilityComp/sectionTitle.astro";
 ---
 
 <Layout>
   <Hero />
   <Experts />
+  <Projections />
+  <Experience />
+  <ValuesPrinciples data="Dark" linkTheme="white"/>
+  <Contact />
 </Layout>

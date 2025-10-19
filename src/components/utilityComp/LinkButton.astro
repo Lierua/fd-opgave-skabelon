@@ -1,0 +1,44 @@
+---
+const {data, url, text} = Astro.props
+---
+
+    <a data-theme={data} href={url}>{text}</a>
+
+<style>
+            a {
+            color: var(--color);
+            font-weight: 600;
+            background-color: var(--back-col);
+            width: fit-content;
+            height: fit-content;
+            padding: 15px 30px;
+            border-radius: 100px;
+            margin-left: auto;
+            align-self: flex-end;
+            transition: background-color 0.2s ease-in, color 0.2s ease-in;
+            &:hover {
+                background-color: var(--hover);
+                color: var(--hoverc);
+            }
+        }
+
+
+    [data-theme="white"] {
+        --back-col: var(--white);
+        --color: var(--black);
+        --hover: var(--yellow);
+        --hoverc: var(--black);
+    }
+    [data-theme="black"] {
+        --back-col: var(--black);
+        --color: var(--white);
+        --hover: var(--white);
+        --hoverc: var(--black);
+    }
+    [data-theme="yellow"] {
+        --back-col: var(--yellow);
+        --color: var(--black);
+        --hover: var(--white);
+        --hoverc: var(--black);
+    }
+</style>

@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import Expert from "@assets/images/Experts.jpg";
+import Tick from "@assets/images/Tick.svg";
+import Pattern2 from "@assets/images/Pattern2.png";
+---
+
+<div>
+    <div class="content">
+        <Image class="pattern" src={Pattern2} alt="pattern" />
+        <Image class="img" src={Expert} alt="Experts" />
+        <div class="info">
+            <h3>WE'LL WORK WITH YOU</h3>
+            <h2>What To Expect</h2>
+            <p>Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals.</p>
+            <ul class="icon-list">
+                <li>
+                    <Image class="icon" src={Tick} alt="Tick" />
+                    Collaborate to build actionable strategies that drive sustainable growth and deliver tangible outcomes.</li>
+                <li>
+                    <Image class="icon" src={Tick} alt="Tick" />
+                    Identify opportunities to optimize processes and implement impactful solutions with measurable results.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content {
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: minmax(0, 632px) 1fr;
+        grid-template-rows: 20px 395px;
+        margin-bottom: var(--margin-space);
+        margin-top: var(--margin-space);
+        position: relative;
+            .pattern {
+                position: absolute;
+                scale: 1;
+                left: -80px;
+                top: 0;
+                z-index: -2;
+            }
+            &::after {
+                top: 40px;
+                left: -40px;
+                content: "";
+                position: absolute;
+                height: 183px;
+                width: 164px;
+                border-radius: var(--border-radius);
+                background-color: var(--green);
+                z-index: -1;
+            }
+        .img {
+            align-self: stretch;
+            width: 100%;
+            object-fit: cover;
+            grid-row: 2;
+            border-radius: var(--border-radius);
+        }
+        div {
+            grid-row: 1/-1;
+            li {
+                display: flex;
+                align-items: center;
+                gap: 0.5em;
+                margin-bottom: 0.7rem;
+                text-wrap: balance;
+                    .icon {
+                    width: 20px;
+                    height: 20px;
+                    flex-shrink: 0;
+                    }
+            }
+        }
+    }
+</style>
