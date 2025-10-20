@@ -1,9 +1,8 @@
 ---
 import ScrollingContainer from "./ScrollingContainer.astro";
 import Content from "@data/financialProjections.json"
-import { Image } from "astro:assets";
-import arrowL from "@icons/arrow-left.svg";
-import arrowR from "@icons/arrow--right.svg";
+import ArrowRight from "@icons/arrow--right.svg";
+import ArrowLeft from "@icons/arrow-left.svg";
 ---
 
 <div class="full-bleed">
@@ -16,8 +15,8 @@ import arrowR from "@icons/arrow--right.svg";
             </p>
           </div>
           <div class="arrows">
-            <a id="scrollLeft" class="scroll-btn"><Image class="img" src={arrowL} alt="{arrow}" /></a>
-            <a class="scroll-btn" id="scrollRight"><Image class="img" src={arrowR} alt="{arrow}" /></a>
+            <a id="scrollLeft" class="scroll-btn"><ArrowLeft class="img" /></a>
+            <a id="scrollRight" class="scroll-btn"><ArrowRight class="img" /></a>
           </div>
         </div>
 
@@ -53,11 +52,26 @@ import arrowR from "@icons/arrow--right.svg";
         align-self: flex-end;
         display: flex;
         gap: 2rem;
-      img {
-          width: 60%;
+        #scrollLeft {
+          &:hover {
+            .img {
+              color: var(--black);
+            }
+          }
+        }
+        #scrollRight {
+          &:hover {
+            .img {
+              color: var(--black);
+            }
+          }
+        }
+      .img {
+          color: var(--white);
+          transition: color 0.2s ease-in;
       }
       a {
-          background-color: var(--white);
+          background-color: var(--black);
           border:4px solid var(--black) ;
           border-radius: 50%;
           display: inline-flex;

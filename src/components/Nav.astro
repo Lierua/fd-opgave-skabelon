@@ -149,12 +149,15 @@
     transform 0.4s ease,
     display 0.4s allow-discrete;
 }
+[popover]:not(.popover-open) {
+    pointer-events: none;
+}
 
 /* When it becomes visible */
 [popover]:popover-open {
   opacity: 1;
   transform: translateY(-100px);
-  
+  pointer-events: auto;
 }
 
 /* Optional: When hiding, move it a bit further up */

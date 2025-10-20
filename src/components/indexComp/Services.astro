@@ -3,26 +3,37 @@
 import servicesData from "@data/services.json";
 console.log(servicesData);
 ---
-
-<ul>
-  {
-    servicesData.services.map((service) => (
-      <li>
-        <h3>{service.title}</h2>
-        <p>{service.description}</p>
-        <a href="#0">{service.buttonText}</a>
-      </li>
-    ))
-  }
-</ul>
-
+<div class="wrap">
+  <ul>
+    {
+      servicesData.services.map((service) => (
+        <li>
+          <h3>{service.title}</h2>
+          <p>{service.description}</p>
+          <a href="#0">{service.buttonText}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
 <style>
   @layer components {
+    .wrap {
+      grid-column: content;
+      container-type: inline-size;
+    }
     ul {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2rem;
       padding: 0;
+      margin-top: -4rem;
+      @container (width < 1000px) {
+       grid-template-columns: 1fr;
+       max-width: 700px;
+       margin: 0 auto; 
+       margin-top: 2rem;
+      }
     }
     li {
       border-radius: var(--border-radius);

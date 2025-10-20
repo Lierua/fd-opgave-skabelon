@@ -30,7 +30,6 @@
   --gray: rgba(27, 27, 27, 0.9);
   --light-gray: #f5f5f5;
   --yellow: #fbc336;
-  --hover-yellow: #f7d274;
   --green: #4eaf4e;
 
   --border-radius: 20px;
@@ -152,5 +151,13 @@ body {
       letter-spacing: 0.1rem;
       margin-top: 2rem;
     }
+  }
+}
+@keyframes parallax {
+  from {
+    object-position: bottom;
+  }
+  to {
+    object-position: top;
   }
 }

@@ -58,6 +58,11 @@ import Pattern2 from "@assets/images/Pattern2.png";
             object-fit: cover;
             grid-row: 2;
             border-radius: var(--border-radius);
+                animation: parallax linear both;
+                animation-timeline: view();
+                @supports not (animation-timeline: view()) {
+                        animation: none;
+                    }
         }
         div {
             grid-row: 1/-1;
@@ -75,4 +80,6 @@ import Pattern2 from "@assets/images/Pattern2.png";
             }
         }
     }
+
+
 </style>

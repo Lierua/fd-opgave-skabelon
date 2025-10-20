@@ -30,12 +30,16 @@ const icons = {
                     <div class="divider"></div>
                     <div class="links">
                         {
-                        data.social_links.map((link) => (
+                            data.social_links.map((link) => {
+                            const Icon = icons[link.icon];
+                            return (
                             <a class="psedo" href={link.url} aria-label={link.platform}>
-                            <Image class="img" src={icons[link.icon]} alt={link.icon} />
+                                <Icon class="img" />
                             </a>
-                        ))
+                            );
+                            })
                         }
+
                         <a class="psedo" href="#">
                         <Image class="img" src={LinkedIn} alt="LinkedIn" />
                         </a>
@@ -98,8 +102,15 @@ const icons = {
                     align-content: center;
                     width: fit-content;
                     margin:auto 0;
+                    .psedo {
+                        transition: scale 0.2s ease-in;
+                        &:hover {
+                            scale: 1.1;
+                        }
+                    }
                     > :nth-child(odd) {
                         border:3px solid var(--black) ;
+                        background-color: var(--black);
                         border-radius: 50%;
                         display: inline-flex;
                         align-items: center;
@@ -110,6 +121,7 @@ const icons = {
                             width: 27px;
                             height: 27px;
                             margin: auto;
+                            color: var(--white);
                         }
                     }
                     > :nth-child(even) {
