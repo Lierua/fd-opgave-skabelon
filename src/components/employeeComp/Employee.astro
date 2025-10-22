@@ -136,6 +136,11 @@ const icons = { facebook, instagram, twitter };
         .set-height {
             height: 500px;
         }
-
+@media (width < 900px) {
+    grid-template-columns: 1fr;
+    .set-height {
+        width: 400px;
+    }
+}
 }
 </style>
