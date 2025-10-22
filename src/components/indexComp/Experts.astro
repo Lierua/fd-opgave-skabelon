@@ -79,6 +79,19 @@ import Pattern2 from "@assets/images/Pattern2.png";
                     }
             }
         }
+        @media (width < 1050px) {
+            display: flex;
+            flex-flow: column;
+            .img {
+                margin: 0 auto;
+                margin-top: 4rem;
+                height: 400px;
+                max-width: 775px;
+            }
+            &::after {
+                left: -1rem;
+            }
+        }
     }
 
 

@@ -29,12 +29,18 @@ import Pattern from "@assets/images/Pattern.png";
   @layer components {
 
     .hero {
-      min-height: 425px;
+      min-height: 500px;
       background-color: var(--black);
       color: var(--white);
       display: grid;
-
       grid-template-columns: minmax(1rem, 1fr) [content-start] minmax(0,calc(var(--content-width)/2)) [img-start] minmax(0,calc(var(--content-width)/2)) [content-end] 1fr [img-end];
+      @media (width < 560px) {
+        height: 800px;
+        display: flex;
+        flex-flow: column-reverse;
+        gap: 3rem;
+        padding-bottom: 2rem;
+      }
       p {
         color: var(--white);
       }
@@ -56,13 +62,23 @@ import Pattern from "@assets/images/Pattern.png";
         flex-direction: column;
         gap: 2rem;
         padding-right: 2rem;
-        position: relative;
+
         .pattern {
           position: absolute;
-          left: -50%;
-          @media (width < 900px) {
+          left: 0;
+          z-index: 0;
+          @media (width < 1570px) {
+            left: -5%;
+          }
+          @media (width < 1430px) {
             display: none;
           }
+        }
+        h1 {
+          z-index: 1;
+        }
+        p {
+          z-index: 1;
         }
         a {
           height: fit-content;
@@ -75,9 +91,16 @@ import Pattern from "@assets/images/Pattern.png";
           color: var(--black);
           background-color: var(--white);
           transition: background-color 0.2s ease-in;
+          z-index: 1;
         }
         a:hover {
           background-color: var(--yellow);
+        }
+        @media (width < 560px) {
+          padding-inline: 1rem;
+          a {
+            margin-top: 5rem;
+          }
         }
       }
     }

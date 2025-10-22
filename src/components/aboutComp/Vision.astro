@@ -95,11 +95,25 @@ import SectionTitle from "@components/utilityComp/sectionTitle.astro";
                     }
             }
         }
+        @media (width < 1050px) {
+            display: flex;
+            flex-flow: column-reverse;
+            .img {
+                margin: 0 auto;
+                margin-top: 4rem;
+                height: 400px;
+                max-width: 775px;
+            }
+            &::after {
+                left: -1rem;
+            }
+        }
     }
     .wrap  {
       display: grid;
       grid-template-columns: 1fr minmax(0, 800px) 1fr;
       margin-bottom: var(--margin-space);
+      container-type: inline-size;
       > * {
         grid-column: 2;
         display: flex;
@@ -111,6 +125,10 @@ import SectionTitle from "@components/utilityComp/sectionTitle.astro";
             gap: 1rem;
             align-items: center;
             font-weight: 600;
+        }
+          @container (width < 600px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
       }
     }

@@ -101,6 +101,26 @@ import Pattern from "@assets/images/Pattern2.png";
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
         }
     }
+    @media (width < 1050px) {
+        max-width: 550px;
+        margin: 0 auto 6rem auto;
+        .content {
+            height: 500px;
+            padding: 2rem 4rem;
+            flex-direction: column;
+            gap: 3rem;
+            .mail-input {
+                margin-left: 0;
+            }
+        }
+    }
+        @media (width < 385px) {
+            .content { 
+                .mail-input {
+                    width: 200px;
+                }
+            }
+    }
 }
 .footer {
     height: 220px;

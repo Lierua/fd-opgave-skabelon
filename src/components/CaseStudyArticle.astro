@@ -119,6 +119,27 @@ const { caseName, category, date, image, buttonLabel} = caseStudy.caseDetails;
     .button:hover {
         background-color: var(--white);
     }
+    @media (width < 1050px) {
+      img {
+        min-height: 385px;
+      }
+    }
+    @media (width < 880px) {
+      .case-details {
+        margin-inline: auto;
+        max-width: 600px;
+        padding: 30px;
+        gap: 3rem;
+        flex-direction: column;
+        dl {
+          gap: 2rem;
+          justify-content: space-between;
+        }
+        a {
+          margin: 0 auto;
+        }
+      }
+    }
   }
   .content {
     margin-bottom: var(--margin-space);

@@ -125,5 +125,22 @@ import pattern from "@assets/images/Pattern2.png";
             grid-area: hands;
         }
     }
+    @media (width < 1050px) {
+            display: flex;
+            flex-flow: column;
+            .imgGrid {
+                height: 400px;
+                max-width: 775px;
+                margin: 0 auto;
+                div {
+                    max-width: 370px;
+                }
+                .laptop {
+                    img {
+                        translate: 0 0;
+                    }
+                }
+            }
+        }
     }
 </style>

@@ -19,7 +19,7 @@ const icons = {
   gear,
 };
 ---
-<div class="full-bleed" data-theme={data} >
+<div class="full-bleed wrap" data-theme={data} >
     <div class="content content-padding">
         <SectionTitle data={data} overTitle="Growing with our Clients" title={cardContent.title} subtitle={cardContent.subtitle}/>
         <LinkButton data={linkTheme} url={cardContent.button.link} text={cardContent.button.text} />
@@ -56,6 +56,15 @@ const icons = {
     .content {
         display: grid;
         grid-template-columns: 2fr 1fr;
+        @container (width < 700px) {
+            display: flex;
+            flex-direction: column;
+            a {
+                margin-left: 0;
+                margin-top: 4rem;
+                align-self: flex-start;
+            }
+        }
         > :nth-child(1) {
             display: flex;
             flex-direction: column;
@@ -72,7 +81,7 @@ const icons = {
                 margin-top: 1rem;
             }
             @container (width < 700px) {
-                padding-inline: calc(15% - 1rem);
+
             }
         }
     }

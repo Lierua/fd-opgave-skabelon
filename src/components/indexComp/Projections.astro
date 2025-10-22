@@ -42,6 +42,10 @@ import ArrowLeft from "@icons/arrow-left.svg";
     align-self: start;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    @media (width < 1200px) {
+      padding-inline: 1rem;
+    }
+
     h1 {
         font-weight: 600;
         font-size: var(--step-5);
@@ -84,6 +88,15 @@ import ArrowLeft from "@icons/arrow-left.svg";
             background-color: var(--yellow);
             border:5px solid var(--yellow) ;
           }
+      }
+    }
+  @media (width < 700px) {
+      display: flex;
+      gap: 3rem;
+      flex-direction: column;
+      .arrows {
+        margin-left: 0;
+        align-self: flex-start;
       }
     }
   }
