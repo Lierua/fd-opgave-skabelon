@@ -2,9 +2,8 @@
 const {data, linkTheme} = Astro.props
 console.log("Theme:", data)
 import cardContent from "@data/coreValues.json";
-import SectionTitle from "./utilityComp/sectionTitle.astro";
-import LinkButton from "./utilityComp/LinkButton.astro";
-import { Image } from "astro:assets";
+import SectionTitle from "@components/utilityComp/SectionTitle.astro";
+import LinkButton from "@components/utilityComp/LinkButton.astro";
 // import your icons
 import layers from "@icons/layers.svg";
 import bars from "@icons/bars.svg";

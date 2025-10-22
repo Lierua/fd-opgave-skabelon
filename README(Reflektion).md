@@ -1,4 +1,4 @@
-# Opgaveskabelon til Frontend Design tema på Frontend-valgfaget
+# Kort Refleksion af Projektet
 
 Se opgavebeskrivelsen på Fronter.
 
