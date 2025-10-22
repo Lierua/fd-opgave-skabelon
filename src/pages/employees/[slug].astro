@@ -1,19 +1,23 @@
 ---
+// src/pages/employees/[slug].astro
+
 import Layout from "@layouts/Layout.astro";
 import Employee from "@components/employeeComp/Employee.astro";
-export async function getStaticPaths() {
 
+export async function getStaticPaths() {
   const employees = (await import("@data/employees.json")).default;
 
   return employees.map((employee) => ({
-    params: { slug: employee.slug.toString() },
-    props: { employee }
+    params: { slug: employee.slug },
+    props: { employee },
   }));
 }
+
+export const prerender = true; // ✅ ensures it builds at site startup
 
 const { employee } = Astro.props;
 ---
 
 <Layout>
- <Employee data={employee}/>
+  <Employee employee={employee} />
 </Layout>

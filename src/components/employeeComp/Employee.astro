@@ -1,62 +1,48 @@
 ---
-const {data} = Astro.props
+const { employee } = Astro.props;
 import { Image } from "astro:assets";
 import Pattern2 from "@assets/images/Pattern2.png";
-
-console.log(data)
-
 import instagram from "@icons/instagram.svg";
 import facebook from "@icons/facebook.svg";
 import twitter from "@icons/twitter.svg";
 import LinkedIn from "@icons/LinkedIn.svg";
 
-
-// create a mapping object
-const icons = {
-  facebook,
-  instagram,
-  twitter,
-};
+const icons = { facebook, instagram, twitter };
 ---
-
 <div>
-    <div class="content">
-        <Image class="pattern" src={Pattern2} alt="pattern" />
-        <img class="img set-height" src={data.img} alt={`Employee ${data.name}`} >
-        <div class="info">
-            <div>
-                <div class="header">
-                    <h1>{data.name}</h1>
-                    <div class="divider"></div>
-                    <div class="links">
-                        {
-                            data.social_links.map((link) => {
-                            const Icon = icons[link.icon];
-                            return (
-                            <a class="psedo" href={link.url} aria-label={link.platform}>
-                                <Icon class="img" />
-                            </a>
-                            );
-                            })
-                        }
-
-                        <a class="psedo" href="#">
-                        <Image class="img" src={LinkedIn} alt="LinkedIn" />
-                        </a>
-                    </div>
-                </div>
-                <h3>{data.title}</h3>
-                <p>{data.description_long}</p>
-            </div>
-            <div>
-                <div>
-                    <h1>Past experience</h1> 
-                </div>
-                <p>{data.past_experience}</p>
-            </div>
+  <div class="content">
+    <Image class="pattern" src={Pattern2} alt="pattern" />
+    <img class="img set-height" src={employee.img} alt={`Employee ${employee.name}`} >
+    <div class="info">
+      <div>
+        <div class="header">
+          <h1>{employee.name}</h1>
+          <div class="divider"></div>
+          <div class="links">
+            {employee.social_links.map((link) => {
+              const Icon = icons[link.icon];
+              return (
+                <a class="psedo" href={link.url} aria-label={link.platform}>
+                  <Icon class="img" />
+                </a>
+              );
+            })}
+            <a class="psedo" href="#">
+              <Image class="img" src={LinkedIn} alt="LinkedIn" />
+            </a>
+          </div>
         </div>
+        <h3>{employee.title}</h3>
+        <p>{employee.description_long}</p>
+      </div>
+      <div>
+        <div><h1>Past experience</h1></div>
+        <p>{employee.past_experience}</p>
+      </div>
     </div>
+  </div>
 </div>
+
 
 <style>
        .content {
