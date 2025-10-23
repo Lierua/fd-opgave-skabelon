@@ -1,82 +1,150 @@
 # Kort Refleksion af Projektet
 
-Se opgavebeskrivelsen på Fronter.
-
-## Medfølgende Data
-
-Der medfølger indholdsdata i form af lokale JSON-filer, som du kan bruge til din opgave. Det er ikke et krav til opgaven, men det kan gøre det nemmere og hurtigere at få tekst og billeder ind i dit projekt.
-
-Bemærk, at CaseStudy-siden allerede inkluderer data fra en lokal JSON-fil.
-
-Dokumentationen til anvendelsen af dataene finder du på: [https://frontend-design-theme.netlify.app/](https://frontend-design-theme.netlify.app/).
-
-Her er et eksempel på, hvordan du kan bruge dataene i dine Astro-komponenter:
+Generelt fandt jeg ingen større udfordringer, bortset fra en mindre forvirring eller to. Generelt var ChatGPT en stor hjælp, når der var ting, jeg var usikker på, såsom at huske igen, hvordan man havde Astro til at generere sites ud fra en database, og hvor mapping-syntaksen var lidt speciel. Netlify medførte nogle problemer, da npm run dev fungerede, men deployment gav en del errors, for eksempel steder, hvor filer blev hentet uden stort begyndelsesbogstav.
 
 ```astro
-import employees from "@data/employees.json";
-
-console.log(employees);
+import SectionTitle from "@components/utilityComp/SectionTitle.astro"
+=/=
+import SectionTitle from "@components/utilityComp/sectionTitle.astro"
 ```
 
-## Brug af hjælpekomponenter
-
-### DynamicImage.astro
-
-Brug denne komponent til at vise billeder dynamisk fra lokale datafiler. Du skal blot sende stien fra datasættet direkte til komponenten.
-
-Eksempel med data:
+Et andet problem ved den genererede side var, at Netlify fandt en anden URL til de genererede sider forskellig fra den til Astro.
 
 ```astro
-{employees.map((employee) => (
-  <DynamicImage
-    imagePath={employee.img}
-    altText={employee.name}
-    width={200}
-    height={200}
-  />
-))}
+http://localhost:4322/employees/john-carter
+=/=
+https://imp-figma-design.netlify.app/team/employees/john-carter/
 ```
 
-### DynamicIcon.astro
+Og da profilbillederne af medarbejderne lå i src-mappen, kunne Netlify ikke finde dem, så jeg måtte flytte billederne til public-mappen og ændre JSON-filen, så den virkede med Netlify.
 
-`DynamicIcon` bruges til at vise SVG-ikoner dynamisk baseret på et navn fra dine data.
+## General Struktur af Komponenter
 
-Eksempel med data:
+For strukturen af Komponenter prøvede jeg at lave elementer, der mindede om hinanden, som komponenter. Jeg ville ændre props’ene, så de reflekterede Figma-filen. Dette gjaldt elementer som sektionerne med overtitle, title og beskrivelse, som set i sektionerne What To Expect, More than 25 years of experience og Our core values & principles. Et andet element var knappen, som blev brugt de fleste steder. I begge tilfælde bestemmer en prop, hvilket farvetema komponenten skal anvende.
 
 ```astro
-{employee.social_links.map((link) => (
-  <DynamicIcon name={link.icon} />
-))}
+<SectionTitle data="Light" overTitle={overTitle} title={title} subtitle={subtitle}/>
+
+<div class="section-title">
+    <p class="overTitle" data-theme={data}>{overTitle}</p>
+    <h1 data-theme={data}>{title}</h1>
+    <p data-theme={data}>{subtitle}</p>
+</div>
+
+[data-theme="Light"] {
+  --back-col: var(--light);
+  --color: var(--black);
+}
+[data-theme="Dark"] {
+  --back-col: var(--black);
+  --color: var(--white);
+}
 ```
 
-Her vises et ikon for hvert socialt medie, hvor `icon`-feltet matcher filnavnet på SVG-ikonet i `src/icons/`.
+Derfra prøvede jeg at bygge hjemmesiden op af komponenter i et mindre forsøg på at anvende et atomic design-princip, så jeg kunne opbygge siden af byggeblokke, som jeg kunne genanvende. I refleksion ville jeg, hvis jeg skulle lave hjemmesiden igen, nok have brugt den første dag på at studere Figma-layoutet mere dybdegående, så jeg kunne bygge siden mere effektivt op af mindre komponenter og dermed bedre følge atomic design-princippet.
 
-### HeroBgWrapper.astro
+### General Struktur for CSS
 
-HeroBgWrapper bruges til Hero-sektioner på diverse undersider. Brug `imagePath` til at angive baggrundsbilledet. Du skal selv hente billederne fra Figma og lægge dem i mappen `src/assets/images`. Henvis derefter kun til filnavnet (f.eks. 'case.webp').
-
-Alt markup du placerer mellem <HeroBgWrapper> og </HeroBgWrapper> bliver vist ovenpå baggrunden.
-
-Eksempel:
+Til strukturen af CSS’en prøvede jeg for det globale stylesheet at holde det til globale variable, såsom farver, font-størrelser og border-radius.
 
 ```astro
-<HeroBgWrapper imagePath="case.webp" class="hero-bg">
-  <h1>Din overskrift</h1>
-</HeroBgWrapper>
+  --content-width: 1200px;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+
+  --step--2: clamp(0.7813rem, 0.7457rem + 0.1578vw, 0.8681rem);
+  --step--1: clamp(0.9375rem, 0.8949rem + 0.1894vw, 1.0417rem);
+
+  --black: #181818;
+  --white: white;
+  --yellow: #fbc336;
+  --green: #4eaf4e;
+
+  --border-radius: 20px;
+  --margin-space: 6rem;
 ```
 
-Du kan tilføje ekstra styling via `class` eller `style`-props, og alt indhold mellem tags bliver vist ovenpå baggrunden.
-
----
-
-## Import af SVG-ikoner direkte
-
-Du kan også importere SVG-ikoner direkte i dine komponenter, hvis du ønsker mere kontrol eller styling:
+Da jeg ville være sikker på, at de matchede Figma-designet gennem hele siden, var det også her, jeg styrede body – herunder den generelle grid-template-columns – og lavede nogle globale klasser, såsom .full-bleed eller .reuseHero, som kunne anvendes på mere end én side.
 
 ```astro
-import Checkmark from "@icons/checkmark.svg";
+body {
+  display: grid;
+  grid-template-columns:
+    [full-bleed-start] minmax(1rem, 1fr) [content] minmax(
+      0,
+      var(--content-width)
+    )
+    minmax(1rem, 1fr) [full-bleed-end];
+  > * {
+    grid-column: content;
+  }
+  a {
+    text-decoration: none;
+  }
+}
 
-<Checkmark width={32} height={32} class="my-icon" />
+.full-bleed {
+  grid-column: full-bleed;
+}
 ```
 
-Se evt. `src/pages/svgs.astro` for flere eksempler på direkte import og brug af SVG-ikoner.
+Herefter anvendte jeg <style> inde i hvert separat komponent, hvor jeg prøvede at anvende de variabler, jeg havde defineret i den globale CSS, og samtidig prøve at neste så meget som muligt. Jeg forsøgte at give en sektion en generel klasse, ofte .content, som ville være mit referencepunkt i <style> for nesting, og muligvis dele komponenter op i to primære klasser, som ville styre styling og nesting.
+
+```astro
+    <div class="content">
+        <div class="info">
+        <SectionTitle data="Light" overTitle="OUR VISION" title="Turn your ideas into reality." subtitle="Capitalize on low hanging fruit to identify a ballpark value added activity beta test. Override the digital divide with additional from DevOps."/>
+            <ul class="icon-list">
+                <li>
+                    <Image class="icon" src={Tick} alt="Tick" />
+                    Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day.</li>
+                <li>
+                    <Image class="icon" src={Tick} alt="Tick" />
+                    Identify opportunities to optimize processes and implement impactful solutions with measurable results.</li>
+            </ul>
+        </div>
+        <Image class="pattern" src={Pattern2} alt="pattern" />
+        <Image class="img" src={vision} alt="Experts" />
+    </div>
+
+    .content {
+        display: grid;
+        gap: 5rem;
+        grid-template-columns: 4fr 3fr;
+        grid-template-rows: 1fr 346px;
+        margin-top: var(--margin-space);
+        margin-bottom: 3rem;
+        position: relative;
+            .pattern {
+                position: absolute;
+                scale: 1;
+                right: -80px;
+                top: 0;
+                z-index: -2;
+            }
+            &::after {
+                top: 40px;
+                right: -40px;
+                content: "";
+                position: absolute;
+                height: 183px;
+                width: 164px;
+                border-radius: var(--border-radius);
+                background-color: var(--green);
+                z-index: -1;
+            }
+        .img {
+            margin-top: -1rem;
+            align-self: stretch;
+            width: 100%;
+            object-fit: cover;
+            grid-row: 2;
+            border-radius: var(--border-radius);
+
+
+        }
+
+    }
+
+```
