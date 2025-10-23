@@ -1,5 +1,7 @@
 # Kort Refleksion af Projektet
 
+# Indtro
+
 Generelt fandt jeg ingen større udfordringer, bortset fra en mindre forvirring eller to. Generelt var ChatGPT en stor hjælp, når der var ting, jeg var usikker på, såsom at huske igen, hvordan man havde Astro til at generere sites ud fra en database, og hvor mapping-syntaksen var lidt speciel. Netlify medførte nogle problemer, da npm run dev fungerede, men deployment gav en del errors, for eksempel steder, hvor filer blev hentet uden stort begyndelsesbogstav.
 
 ```astro
@@ -148,3 +150,7 @@ Herefter anvendte jeg <style> inde i hvert separat komponent, hvor jeg prøvede 
     }
 
 ```
+
+### Sidste Reflektioner
+
+Som nogle sidste refleksioner syntes jeg, det var et sjovt projekt, og jeg synes, jeg fik en ny og bedre forståelse for, hvad atomic design er, og hvorfor det er et godt princip at kende. Jeg har også fået en bedre forståelse for, hvor meget det kan hjælpe at tage en dag til at forstå et givent design bedre og planlægge, hvilke komponenter siden kan deles op i. Desuden blev det klart, hvilke globale variabler man bør have klar, såsom standard-gap, padding, margin, border-line og andre, som jeg måske ville have ønsket at have haft på forhånd. Alt i alt har projektet givet mig et bedre indblik på hvordan man kan strukturer ens projekter, hvilket som nænvet tidligere var ret sjovt.
